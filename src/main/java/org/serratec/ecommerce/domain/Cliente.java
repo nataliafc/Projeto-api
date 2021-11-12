@@ -40,6 +40,10 @@ public class Cliente {
 	@NotBlank(message = "E-mail não pode ser vazio")
 	private String email;
 	
+	@CPF
+	@NotBlank
+	private String cpf;
+	
 	@NotBlank(message = "Senha não pode ser vazio")
 	@Size(min=6, max=10, message = "Senha deve ter entre {min} e {max} números.")
 	private String senha;
@@ -50,6 +54,8 @@ public class Cliente {
 	
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
+
+	
 	
 	public Cliente() {
 	}

@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.serratec.ecommerce.domain.Cliente;
+import org.serratec.ecommerce.dto.ClienteLogadoDTO;
 import org.serratec.ecommerce.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -77,8 +78,8 @@ public class ClienteController {
 			@ApiResponse(code = 500, message = "Erro no servidor"),
 			@ApiResponse(code = 505, message = "Ocorreu uma exceção")
 	})
-	public ResponseEntity<Cliente> criar(@Valid @RequestBody Cliente cliente) {
-		Cliente clienteSalvo = clienteService.criar(cliente);
+	public ResponseEntity<ClienteLogadoDTO> criar(@Valid @RequestBody ClienteLogadoDTO clienteLogadoDTO) {
+		ClienteLogadoDTO clienteSalvo = clienteService.criar(clienteLogadoDTO);
 		
 		URI uri = null;
 		try {
@@ -99,8 +100,8 @@ public class ClienteController {
 			@ApiResponse(code = 500, message = "Erro no servidor"),
 			@ApiResponse(code = 505, message = "Ocorreu uma exceção")
 	})
-	public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
-		Cliente clienteAtualizado = clienteService.atualizar(id, cliente);
+	public ResponseEntity<ClienteLogadoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ClienteLogadoDTO clienteLogadoDTO) {
+		ClienteLogadoDTO clienteAtualizado = clienteService.atualizar(id, clienteLogadoDTO);
 		
 		if (clienteAtualizado == null) {
 			return ResponseEntity.notFound().build();

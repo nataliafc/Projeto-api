@@ -12,12 +12,11 @@ import org.serratec.ecommerce.exception.EmailException;
 import org.serratec.ecommerce.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.serratec.ecommerce.repository.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -34,9 +33,6 @@ public class ClienteService {
 		}
 		return clientesDTO;
   }
-  
-	@Autowired
-	private ClienteRepository clienteRepository;
 
 	public List<Cliente> obterTodos() {
 		return clienteRepository.findAll();
@@ -51,25 +47,36 @@ public class ClienteService {
 		if (clienteRepository.findByEmail(clienteLogadoDTO.getEmail()) != null) {
 			throw new EmailException("E-mail existente.");
 		}
-		
 		Cliente cliente = new Cliente();
-		cliente.setNome(clienteLogadoDTO.getNome());
-		cliente.setEmail(clienteLogadoDTO.getEmail());
-		cliente.setSenha(passwordEncoder.encode(clienteLogadoDTO.getSenha()));
-		cliente = clienteRepository.save(cliente);
+			cliente.setNome(clienteLogadoDTO.getNome());
+			cliente.setSobrenome(clienteLogadoDTO.getSobrenome());
+			cliente.setDataNascimento(clienteLogadoDTO.getDataNascimento());
+			cliente.setEmail(clienteLogadoDTO.getEmail());
+			cliente.setCpf(clienteLogadoDTO.getCpf());
+			cliente.setSenha(passwordEncoder.encode(clienteLogadoDTO.getSenha()));
+			cliente = clienteRepository.save(cliente);
 		
 		return new ClienteLogadoDTO(cliente);
-
-	public Cliente criar(@Valid Cliente cliente) {
-		return clienteRepository.save(cliente);
 	}
 
-	public Cliente atualizar(Long id, @Valid Cliente cliente) {
+	// public Cliente criar(@Valid Cliente cliente) {
+	//	return clienteRepository.save(cliente);
+	//}
+
+	public ClienteLogadoDTO atualizar(Long id, @Valid ClienteLogadoDTO clienteLogadoDTO) {
 		if (!clienteRepository.existsById(id)) {
 			return null;
 		}
-		cliente.setId(id);
-		return clienteRepository.save(cliente);
+		Cliente cliente = new Cliente();
+		cliente.setNome(clienteLogadoDTO.getNome());
+		cliente.setSobrenome(clienteLogadoDTO.getSobrenome());
+		cliente.setDataNascimento(clienteLogadoDTO.getDataNascimento());
+		cliente.setEmail(clienteLogadoDTO.getEmail());
+		cliente.setCpf(clienteLogadoDTO.getCpf());
+		cliente.setSenha(passwordEncoder.encode(clienteLogadoDTO.getSenha()));
+		cliente = clienteRepository.save(cliente);
+	
+	return new ClienteLogadoDTO(cliente);
 	}
 
 	public boolean deletar(Long id) {

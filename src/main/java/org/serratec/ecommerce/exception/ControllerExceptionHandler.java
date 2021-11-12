@@ -1,7 +1,5 @@
 package org.serratec.ecommerce.exception;
 
-public class ControllerExceptionHandler {
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

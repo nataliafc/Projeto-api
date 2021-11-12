@@ -9,6 +9,7 @@ import org.serratec.ecommerce.domain.Endereco;
 import org.serratec.ecommerce.domain.Pedido;
 
 public class ClienteLogadoDTO {
+	private long id;
 	private String nome;
 	private String sobrenome;
 	private LocalDate dataNascimento;
@@ -38,6 +39,13 @@ public class ClienteLogadoDTO {
 		this.email = cliente.getEmail();
 		this.cpf = cliente.getCpf();
 		this.senha = cliente.getSenha();
+	}
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
