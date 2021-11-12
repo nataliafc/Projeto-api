@@ -11,24 +11,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
+	@ApiModelProperty(value = "Identificador único do pedido")
 	private Long id;
 	
 	@Column(name = "data_pedido")
+	@ApiModelProperty(value = "Data da efetuação do pedido", required = true)
 	private LocalDateTime dataPedido;
 
+	@ApiModelProperty(value = "Valor total dos itens do pedido", required = true)
 	private Double valorTotal;
 
 	@Column(name = "data_envio")
+	@ApiModelProperty(value = "Data de envio do pedido", required = true)
 	private LocalDateTime dataEnvio;
 
 	@Column(name = "data_entrega")
+	@ApiModelProperty(value = "Data da entrega do pedido ao cliente")
 	private LocalDateTime dataEntrega;
 	
+	@ApiModelProperty(value = "Status do pedido", required = true)
 	private String status;
 
 	@ManyToOne

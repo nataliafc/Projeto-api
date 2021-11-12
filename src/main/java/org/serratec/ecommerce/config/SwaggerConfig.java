@@ -21,8 +21,9 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("org.serratec.ecommerce"))
 				.paths(PathSelectors.any())
 				.build();
-		        
+		
 	}
+
 	public ApiInfo apiInfo() {
 		ApiInfo apiInfo = new ApiInfoBuilder()
 				.title("ECOMMERCE API")
@@ -34,3 +35,4 @@ public class SwaggerConfig {
 		return apiInfo;
 	}
 }
+

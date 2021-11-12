@@ -67,7 +67,7 @@ public class ClienteController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping
+	@PostMapping("/criar")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Criar um cliente", notes = "Cria um cliente")
 	@ApiResponses(value = { 

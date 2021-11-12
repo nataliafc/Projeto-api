@@ -12,20 +12,27 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
+	@ApiModelProperty(value = "Identificador único do produto")
 	private Long id;
 	
+	
 	@NotBlank(message = "Nome não pode ser vazio" )
+	@ApiModelProperty(value = "Nome do produto", required = true)
 	private String nome;
 	
+	@ApiModelProperty(value = "Descrição do produto", required = true)
 	private String descricao;
 	
 	@NotBlank(message = "Valor não pode ser vazio" )
 	@Min(value = 0, message = "Valor não pode ser negativo")
+	@ApiModelProperty(value = "Valor unitário do produto", required = true)
 	private Double valor;
 	
 	@ManyToOne

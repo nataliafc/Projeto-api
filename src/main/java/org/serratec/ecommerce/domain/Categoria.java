@@ -12,15 +12,19 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
+	@ApiModelProperty(value = "Identificador único da categoria")
 	private Long id;
 	
 	@NotBlank(message = "Nome da categoria não pode ser vazio" )
 	@Size(max=200, min=4, message = "O nome não pode ser menor que {min} caracteres ou maior que {max} caracteres")
+	@ApiModelProperty(value = "Nome da Categoria", required = true)
 	private String nome;
 	
 	@OneToMany(mappedBy = "categoria")
