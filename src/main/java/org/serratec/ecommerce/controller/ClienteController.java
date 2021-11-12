@@ -59,8 +59,8 @@ public class ClienteController {
 			@ApiResponse(code = 500, message = "Erro no servidor"),
 			@ApiResponse(code = 505, message = "Ocorreu uma exceção")
 	})
-	public ResponseEntity<Cliente> buscar(@PathVariable Long id) {
-		Optional<Cliente> cliente = clienteService.buscar(id);
+	public ResponseEntity<ClienteLogadoDTO> buscar(@PathVariable Long id) {
+		Optional<ClienteLogadoDTO> cliente = Optional.empty();
 		if (cliente.isPresent()) {
 			return ResponseEntity.ok(cliente.get());
 		}
@@ -120,7 +120,7 @@ public class ClienteController {
 			@ApiResponse(code = 500, message = "Erro no servidor"),
 			@ApiResponse(code = 505, message = "Ocorreu uma exceção")
 	})
-	public ResponseEntity<Cliente> deletar(@PathVariable Long id) {
+	public ResponseEntity<ClienteLogadoDTO> deletar(@PathVariable Long id) {
 		if (!clienteService.deletar(id)) {
 			return ResponseEntity.notFound().build();
 		}
